@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faBullhorn, faBuilding, faCog, faNewspaper, faChartArea } from '@fortawesome/free-solid-svg-icons'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import './LeftSideMenu.scss'
 
 class LeftSideMenu extends Component{
