@@ -1,1 +1,1 @@
-export { getAccountInfo } from './accountInfo/accountInfoActions'
+export { getAccountInfo, submitAccountInfo } from './accountInfo/accountInfoActions'

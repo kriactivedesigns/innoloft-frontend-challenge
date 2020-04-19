@@ -4,6 +4,7 @@ import AdditionalInfoForm from './AdditionalInfoForm'
 import './MyAccountPage.scss'
 import { MainInfoFormId, AdditionalInfoFormId } from '../../GlobalConstants';
 import { connect } from 'react-redux'
+import { submitAccountInfo } from '../../redux'
 
 const mapStateToProps = (store) => {
     return {
@@ -16,7 +17,18 @@ class MyAccountPage extends Component{
     constructor(props){
         super(props);
         this.state = {
-            visibleTab: 'left'
+            visibleTab: 'left',
+            mainInfo:{
+                email: this.props.accountInfo.info.email,
+            },
+            additionalInfo:{
+                firstname: this.props.accountInfo.info.firstname,
+                lastname: this.props.accountInfo.info.lastname,
+                housenumber: this.props.accountInfo.info.housenumber,
+                street: this.props.accountInfo.info.street,
+                country: this.props.accountInfo.info.country,
+                postalcode: this.props.accountInfo.info.postalcode
+            }
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -27,36 +39,33 @@ class MyAccountPage extends Component{
         this.setState({ visibleTab : tab })
     }
 
-    handleChange(e){
-        this.setState({[e.target.name]:[e.target.value]})
+    handleChange(e, source){
+        if(source === MainInfoFormId){
+            this.setState({ mainInfo : { ...this.state.mainInfo , [e.target.name] : e.target.value }})
+        }
+        else if(source === AdditionalInfoFormId){
+            this.setState({ additionalInfo : { ...this.state.additionalInfo , [e.target.name] : e.target.value }})
+        }
     }
 
     submitForm(e){
         e.preventDefault()
-        console.log(this.props.accountInfo)
         const id = e.target.id
         if(id === MainInfoFormId){
-            const mainInfo = {
-                email: this.state.email,
-                password: this.state.password
+            const newPassword = e.target['password'].value;
+            const newMainInfo = this.state.mainInfo
+            if(newPassword.length > 0){
+                newMainInfo['password'] = newPassword
             }
-            console.log(mainInfo)
+            this.props.dispatch(submitAccountInfo(newMainInfo))
         }
         else if(id === AdditionalInfoFormId){
-            const additionalInfo = {
-                firstname: this.state.firstname,
-                lastname: this.state.lastname,
-                housenumber: this.state.housenumber,
-                street: this.state.street,
-                postalcode: this.state.postalcode,
-                country: this.state.country
-            }
-            console.log(additionalInfo)
+            const newAdditionalInfo = this.state.additionalInfo
+            this.props.dispatch(submitAccountInfo(newAdditionalInfo))
         }
     }
 
     render(){
-
         return(
             <div className="main-container">
                 <div className="info-container">
@@ -70,10 +79,12 @@ class MyAccountPage extends Component{
                     </div>
                     <div className={`info-tab ${this.state.visibleTab === "left" ? "" : "hidden" }`}>
                         <MainInfoForm onSubmit={this.submitForm}
+                            data={this.state.mainInfo}
                             onChange={this.handleChange}/>
                     </div>
                     <div className={`info-tab ${this.state.visibleTab === "right" ? "" : "hidden" }`}>
                         <AdditionalInfoForm onSubmit={this.submitForm}
+                            data={this.state.additionalInfo}
                             onChange={this.handleChange}/>
                     </div>
                 </div>

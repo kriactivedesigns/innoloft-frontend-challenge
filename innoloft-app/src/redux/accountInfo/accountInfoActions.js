@@ -7,13 +7,23 @@ import {
 export const getAccountInfo = () => {
     return function (dispatch) {
         dispatch(accountActionStarted())
-        const data = {}
+        const data = {
+            email: 'arun@arun.com',
+            password: 'password',
+            firstname: 'arun',
+            lastname: 'mohanan',
+            housenumber: '45',
+            street: 'kochi',
+            postalcode: '456',
+            country: 'india'
+        }
         dispatch(accountActionSuccess(data))
     }
 } 
 
 export const submitAccountInfo = (data) => {
     return function (dispatch) {
+        console.log(data)
         dispatch(accountActionStarted())
         dispatch(accountActionSuccess(data))
     }
