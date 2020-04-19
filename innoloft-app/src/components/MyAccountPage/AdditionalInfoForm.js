@@ -4,11 +4,12 @@ import { AdditionalInfoFormId } from '../../GlobalConstants'
 
 function AdditionalInfoForm(props){
 
-    const { firstname, lastname, housenumber, street, postalcode, country} = props.data
-
-    const onChange = (e) => {
-        props.onChange(e,AdditionalInfoFormId)
-    }
+    const [firstname,setFirstName] = React.useState(props.data.firstname ? props.data.firstname : '')
+    const [lastname,setLastName] = React.useState(props.data.lastname ? props.data.lastname : '')
+    const [housenumber,setHouseNumber] = React.useState(props.data.housenumber ? props.data.housenumber : '')
+    const [street,setStreet] = React.useState(props.data.street ? props.data.street : '')
+    const [postalcode,setPostalCode] = React.useState(props.data.postalcode ? props.data.postalcode : '')
+    const [country,setCountry] = React.useState(props.data.country ? props.data.country : '')
 
     return(
         <form id={AdditionalInfoFormId}
@@ -21,37 +22,55 @@ function AdditionalInfoForm(props){
                 required
                 name="firstname" 
                 value={firstname}
-                onChange={onChange}/>
+                onChange={(e) => {
+                    setFirstName(e.target.value)
+                    props.onChange(e,AdditionalInfoFormId)
+                }}/>
             <input type="text" 
                 placeholder="Last Name" 
                 required
                 name="lastname" 
                 value={lastname}
-                onChange={onChange}/>
+                onChange={(e) => {
+                    setLastName(e.target.value)
+                    props.onChange(e,AdditionalInfoFormId)
+                }}/>
             <input type="text" 
                 placeholder="House No." 
                 required
                 name="housenumber" 
                 value={housenumber}
-                onChange={onChange}/>
+                onChange={(e) => {
+                    setHouseNumber(e.target.value)
+                    props.onChange(e,AdditionalInfoFormId)
+                }}/>
             <input type="text" 
                 placeholder="Street" 
                 required
                 name="street" 
                 value={street}
-                onChange={onChange}/>
+                onChange={(e) => {
+                    setStreet(e.target.value)
+                    props.onChange(e,AdditionalInfoFormId)
+                }}/>
             <input type="number" 
                 placeholder="Postal Code" 
                 required
                 name="postalcode" 
                 value={postalcode}
-                onChange={onChange}/>
+                onChange={(e) => {
+                    setPostalCode(e.target.value)
+                    props.onChange(e,AdditionalInfoFormId)
+                }}/>
             <input type="text" 
                 placeholder="Country" 
                 required
                 name="country" 
                 value={country}
-                onChange={onChange}/>
+                onChange={(e) => {
+                    setCountry(e.target.value)
+                    props.onChange(e,AdditionalInfoFormId)
+                }}/>
 
             <button type="submit" 
                     form={AdditionalInfoFormId}>

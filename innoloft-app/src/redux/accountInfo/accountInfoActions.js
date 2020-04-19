@@ -4,28 +4,36 @@ import {
     ACCOUNT_INFO_ACTION_FAILED
 } from './accountInfoActionTypes'
 
+import axios from '../../__mock__/axios'
+
 export const getAccountInfo = () => {
     return function (dispatch) {
         dispatch(accountActionStarted())
-        const data = {
-            email: 'arun@arun.com',
-            password: 'password',
-            firstname: 'arun',
-            lastname: 'mohanan',
-            housenumber: '45',
-            street: 'kochi',
-            postalcode: '456',
-            country: 'india'
-        }
-        dispatch(accountActionSuccess(data))
+        axios.get('/acountinfo')
+        .then(response => {
+            const accountInfo = response
+            dispatch(accountActionSuccess(accountInfo))
+        })
+        .catch(error => {
+            console.log(error)
+            dispatch(accountActionFailed())
+        })
     }
 } 
 
 export const submitAccountInfo = (data) => {
     return function (dispatch) {
-        console.log(data)
         dispatch(accountActionStarted())
-        dispatch(accountActionSuccess(data))
+        axios.post('/acountinfo',data)
+        .then(response => {
+            const accountInfo = response
+            dispatch(accountActionSuccess(accountInfo))
+            dispatch(getAccountInfo())
+        })
+        .catch(error => {
+            console.log(error)
+            dispatch(accountActionFailed())
+        })
     }
 }
 

@@ -4,8 +4,7 @@ import { MainInfoFormId } from '../../GlobalConstants'
 
 function MainInfoForm(props){
 
-    const { email } = props.data
-
+    const [email,setEmail] = React.useState(props.data.email ? props.data.email : '')
     const [password,setPassword] = React.useState('')
     const [confirmPassword,reenterPassord] = React.useState('')
 
@@ -17,6 +16,7 @@ function MainInfoForm(props){
             reenterPassord(e.target.value)
         }
         else{
+            setEmail(e.target.value)
             props.onChange(e,MainInfoFormId)
         }
     }

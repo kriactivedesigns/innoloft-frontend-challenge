@@ -6,7 +6,7 @@ import {
 
 const initialState = {
     loading: false,
-    info: null
+    info: {}
 }
 
 const accountInfoReducer = (state = initialState, action) => {
@@ -19,14 +19,10 @@ const accountInfoReducer = (state = initialState, action) => {
         }
 
         case ACCOUNT_INFO_ACTION_SUCCESS : {
-            const newInfo = action.payload
             return {
                 ...state,
                 loading: false,
-                info: {
-                    ...state.info,
-                    ...newInfo
-                } 
+                info: action.payload
             }
         }
 
@@ -34,7 +30,7 @@ const accountInfoReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                info: null
+                info: {}
             }
         }
 

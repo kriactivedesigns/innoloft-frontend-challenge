@@ -4,7 +4,7 @@ import AdditionalInfoForm from './AdditionalInfoForm'
 import './MyAccountPage.scss'
 import { MainInfoFormId, AdditionalInfoFormId } from '../../GlobalConstants';
 import { connect } from 'react-redux'
-import { submitAccountInfo } from '../../redux'
+import { submitAccountInfo, getAccountInfo } from '../../redux'
 
 const mapStateToProps = (store) => {
     return {
@@ -19,15 +19,15 @@ class MyAccountPage extends Component{
         this.state = {
             visibleTab: 'left',
             mainInfo:{
-                email: this.props.accountInfo.info.email,
+                email: '',
             },
             additionalInfo:{
-                firstname: this.props.accountInfo.info.firstname,
-                lastname: this.props.accountInfo.info.lastname,
-                housenumber: this.props.accountInfo.info.housenumber,
-                street: this.props.accountInfo.info.street,
-                country: this.props.accountInfo.info.country,
-                postalcode: this.props.accountInfo.info.postalcode
+                firstname: '',
+                lastname: '',
+                housenumber: '',
+                street: '',
+                country: '',
+                postalcode: ''
             }
         }
 
@@ -66,30 +66,35 @@ class MyAccountPage extends Component{
     }
 
     render(){
-        return(
-            <div className="main-container">
-                <div className="info-container">
-                    <div className="info-header">
-                        <button type="button" 
-                            className={`${this.state.visibleTab === "left" ? "active" : "" }`}
-                            onClick={() => this.handleTabSwitch('left')}>Main Information</button>
-                        <button type="button" 
-                            className={`${this.state.visibleTab === "right" ? "active" : "" }`}
-                            onClick={() => this.handleTabSwitch('right')}>Additional Information</button>
-                    </div>
-                    <div className={`info-tab ${this.state.visibleTab === "left" ? "" : "hidden" }`}>
-                        <MainInfoForm onSubmit={this.submitForm}
-                            data={this.state.mainInfo}
-                            onChange={this.handleChange}/>
-                    </div>
-                    <div className={`info-tab ${this.state.visibleTab === "right" ? "" : "hidden" }`}>
-                        <AdditionalInfoForm onSubmit={this.submitForm}
-                            data={this.state.additionalInfo}
-                            onChange={this.handleChange}/>
+        if(this.props.accountInfo.info){
+            return(
+                <div className="main-container">
+                    <div className="info-container">
+                        <div className="info-header">
+                            <button type="button" 
+                                className={`${this.state.visibleTab === "left" ? "active" : "" }`}
+                                onClick={() => this.handleTabSwitch('left')}>Main Information</button>
+                            <button type="button" 
+                                className={`${this.state.visibleTab === "right" ? "active" : "" }`}
+                                onClick={() => this.handleTabSwitch('right')}>Additional Information</button>
+                        </div>
+                        <div className={`info-tab ${this.state.visibleTab === "left" ? "" : "hidden" }`}>
+                            <MainInfoForm onSubmit={this.submitForm}
+                                data={this.props.accountInfo.info}
+                                onChange={this.handleChange}/>
+                        </div>
+                        <div className={`info-tab ${this.state.visibleTab === "right" ? "" : "hidden" }`}>
+                            <AdditionalInfoForm onSubmit={this.submitForm}
+                                data={this.props.accountInfo.info}
+                                onChange={this.handleChange}/>
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        }
+        else{
+            return null
+        }
     }
 }
 
