@@ -3,6 +3,13 @@ import MainInfoForm from './MainInfoForm'
 import AdditionalInfoForm from './AdditionalInfoForm'
 import './MyAccountPage.scss'
 import { MainInfoFormId, AdditionalInfoFormId } from '../../GlobalConstants';
+import { connect } from 'react-redux'
+
+const mapStateToProps = (store) => {
+    return {
+        accountInfo: store
+    }
+}
 
 class MyAccountPage extends Component{
 
@@ -26,6 +33,7 @@ class MyAccountPage extends Component{
 
     submitForm(e){
         e.preventDefault()
+        console.log(this.props.accountInfo)
         const id = e.target.id
         if(id === MainInfoFormId){
             const mainInfo = {
@@ -74,4 +82,4 @@ class MyAccountPage extends Component{
     }
 }
 
-export default MyAccountPage
+export default connect(mapStateToProps)(MyAccountPage)
