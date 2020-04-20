@@ -63,6 +63,11 @@ $border-radius: 2px;
                         cursor: pointer;
                         border-color: $base-green;
                     }
+                    &:disabled{
+                        border-color: lightgray;
+                        color: lightgray;
+                        cursor: unset;
+                    }
                 }
             }
         }

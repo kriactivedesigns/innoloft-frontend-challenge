@@ -2,34 +2,41 @@ import React from 'react'
 import './MyAccountPage.scss'
 import { MainInfoFormId } from '../../GlobalConstants'
 import InputField from '../InputField/InputField'
+import { submitAccountInfo } from '../../redux'
+import { useDispatch } from 'react-redux'
 
 function MainInfoForm(props){
 
-    const [email,setEmail] = React.useState(props.data.email ? props.data.email : '')
+    const dispatch = useDispatch()
+    
+    const [email,setEmail] = React.useState(props.data)
     const [password,setPassword] = React.useState('')
     const [confirmPassword,reenterPassord] = React.useState('')
-
-    const onChange = (e) => {
-        if(e.target.name == 'password'){
-            setPassword(e.target.value)
-        }
-        else if(e.target.name == 'passwordconfirmation'){
-            reenterPassord(e.target.value)
-        }
-        else{
-            setEmail(e.target.value)
-            props.onChange(e,MainInfoFormId)
-        }
-    }
+    const [confirmPasswordError,setConfirmPasswordError] = React.useState("")
 
     const onSubmit = (e) => {
-        if(password != confirmPassword){
-            e.preventDefault()
-            console.log("Passwords do not match!");
+        
+        e.preventDefault()
+
+        var info = {
+            email
         }
-        else{
-            props.onSubmit(e)
+        
+        if(password.length > 0 && password === confirmPassword){
+            info = {
+                ...info,
+                password
+            }
+        }else if(password != confirmPassword){
+            setConfirmPasswordError("Error: Passwords do not match!")
+            window.alert("Error: Passwords do not match!")
+            return
+        }else{
+            setConfirmPasswordError("")
         }
+
+        dispatch(submitAccountInfo(info))
+
     }
 
     const checkIfRequired = () => {
@@ -48,8 +55,12 @@ function MainInfoForm(props){
 
             <InputField placeholder="Email" 
                 name="email" 
+                id="email" 
                 type="email"
-                onChange={onChange}
+                required
+                onChange={(e) => {
+                    setEmail(e.target.value)
+                }}
                 value={email}
                 label="E-Mail"/>
 
@@ -59,15 +70,31 @@ function MainInfoForm(props){
                 type="password"
                 value={password}
                 label="Password"
-                onChange={onChange}/>
+                onChange={(e) => {
+                    setPassword(e.target.value)
+                    if(confirmPassword != e.target.value){
+                        setConfirmPasswordError("Error: Passwords do not match!")
+                    }else{
+                        setConfirmPasswordError("")
+                    }
+                }}/>
 
             <InputField placeholder="Confirm Password" 
                 value={confirmPassword}
+                error={confirmPasswordError}
                 required={checkIfRequired()}
                 type="password"
+                id="passwordconfirmation"
                 name="passwordconfirmation" 
                 label="Confirm Password"
-                onChange={onChange}/>
+                onChange={(e) => {
+                    reenterPassord(e.target.value)
+                    if(password != e.target.value){
+                        setConfirmPasswordError("Error: Passwords do not match!")
+                    }else{
+                        setConfirmPasswordError("")
+                    }
+                }}/>
 
             <button type="submit" 
                     form={MainInfoFormId}>

@@ -29,6 +29,7 @@ export const submitAccountInfo = (data) => {
             const accountInfo = response
             dispatch(accountActionSuccess(accountInfo))
             dispatch(getAccountInfo())
+            window.alert("Account information successfully updated")
         })
         .catch(error => {
             console.log(error)

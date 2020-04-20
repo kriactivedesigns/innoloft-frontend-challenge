@@ -13,14 +13,12 @@ const accountInfoReducer = (state = initialState, action) => {
     switch (action.type){
         case ACCOUNT_INFO_ACTION_STARTED : {
             return {
-                ...state,
                 loading: true
             }
         }
 
         case ACCOUNT_INFO_ACTION_SUCCESS : {
             return {
-                ...state,
                 loading: false,
                 info: action.payload
             }
@@ -28,7 +26,6 @@ const accountInfoReducer = (state = initialState, action) => {
 
         case ACCOUNT_INFO_ACTION_FAILED: {
             return {
-                ...state,
                 loading: false,
                 info: {}
             }
