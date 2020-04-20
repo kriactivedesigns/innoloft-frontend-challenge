@@ -1,5 +1,6 @@
 import React from 'react'
 import './MyAccountPage.scss'
+import InputField from '../InputField/InputField'
 import { AdditionalInfoFormId } from '../../GlobalConstants'
 
 function AdditionalInfoForm(props){
@@ -17,54 +18,54 @@ function AdditionalInfoForm(props){
                 props.onSubmit(e)
             }}>
 
-            <input type="text" 
+            <InputField type="text" 
                 placeholder="First Name" 
-                required
                 name="firstname" 
                 value={firstname}
+                label="First Name"
                 onChange={(e) => {
                     setFirstName(e.target.value)
                     props.onChange(e,AdditionalInfoFormId)
                 }}/>
-            <input type="text" 
+            <InputField type="text" 
                 placeholder="Last Name" 
-                required
                 name="lastname" 
                 value={lastname}
+                label="Last Name"
                 onChange={(e) => {
                     setLastName(e.target.value)
                     props.onChange(e,AdditionalInfoFormId)
                 }}/>
-            <input type="text" 
+            <InputField type="text" 
                 placeholder="House No." 
-                required
                 name="housenumber" 
+                label="House Number"
                 value={housenumber}
                 onChange={(e) => {
                     setHouseNumber(e.target.value)
                     props.onChange(e,AdditionalInfoFormId)
                 }}/>
-            <input type="text" 
+            <InputField type="text" 
                 placeholder="Street" 
-                required
+                label="Street"
                 name="street" 
                 value={street}
                 onChange={(e) => {
                     setStreet(e.target.value)
                     props.onChange(e,AdditionalInfoFormId)
                 }}/>
-            <input type="number" 
+            <InputField type="number" 
                 placeholder="Postal Code" 
-                required
+                label="Postal Code"
                 name="postalcode" 
                 value={postalcode}
                 onChange={(e) => {
                     setPostalCode(e.target.value)
                     props.onChange(e,AdditionalInfoFormId)
                 }}/>
-            <input type="text" 
+            <InputField type="text" 
                 placeholder="Country" 
-                required
+                label="Country"
                 name="country" 
                 value={country}
                 onChange={(e) => {

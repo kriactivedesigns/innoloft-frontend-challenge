@@ -1,6 +1,7 @@
 import React from 'react'
 import './MyAccountPage.scss'
 import { MainInfoFormId } from '../../GlobalConstants'
+import InputField from '../InputField/InputField'
 
 function MainInfoForm(props){
 
@@ -45,24 +46,27 @@ function MainInfoForm(props){
         <form id={MainInfoFormId}
             onSubmit={onSubmit}>
 
-            <input placeholder="Email" 
+            <InputField placeholder="Email" 
                 name="email" 
                 type="email"
                 onChange={onChange}
-                value={email}/>
+                value={email}
+                label="E-Mail"/>
 
-            <input placeholder="Password" 
+            <InputField placeholder="Password" 
                 id="password"
                 name="password" 
                 type="password"
                 value={password}
+                label="Password"
                 onChange={onChange}/>
 
-            <input placeholder="Confirm Password" 
+            <InputField placeholder="Confirm Password" 
                 value={confirmPassword}
                 required={checkIfRequired()}
                 type="password"
                 name="passwordconfirmation" 
+                label="Confirm Password"
                 onChange={onChange}/>
 
             <button type="submit" 
