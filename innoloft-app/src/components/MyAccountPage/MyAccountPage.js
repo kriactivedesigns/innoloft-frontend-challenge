@@ -36,6 +36,7 @@ class MyAccountPage extends Component{
 
             return(
                 <div className="main-container">
+                    <h1>My Account</h1>
                     <div className="info-container">
                         <div className="info-header">
                             <button type="button" 

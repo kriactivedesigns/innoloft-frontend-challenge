@@ -3,15 +3,27 @@ $border-radius: 2px;
 
 .main-container{
     background-color: $base-gray;
+    flex-direction: column;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: 50px;
+    justify-content: flex-start;
+    align-items: center;
     width: 100%;
+    overflow: scroll;
+    h1{
+        background-color: $base-green;
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 20px;
+        text-align: center;
+        color: $base-white;
+        font-size: 22px;
+        font-weight: 500;
+        padding: 10px 0;
+    }
     .info-container{
         width: 50%;
-        min-width: 350px;
         max-width: 500px;
+        min-width: 350px;
         background-color: $base-white;
         border-radius: $border-radius;
         border: 1px solid $base-border;
@@ -74,5 +86,17 @@ $border-radius: 2px;
         .hidden{
             display: none;
         }
+    }
+}
+
+@media (max-width: 575px){
+    .info-container{
+        min-width: 280px !important;
+    }
+}
+
+@media (max-width: 370px){
+    .info-container{
+        min-width: 250px !important;
     }
 }

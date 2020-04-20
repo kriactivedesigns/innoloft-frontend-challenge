@@ -7,6 +7,14 @@
     .main-content{
         display: flex;
         flex-direction: row;
-        height: 100%;
+        height: calc(100vh - 70px)
+    }
+}
+
+@media (max-width: 575px){
+    .App{
+        .main-content{
+            height: calc(100vh - 70px)
+        }
     }
 }

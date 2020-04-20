@@ -10,32 +10,32 @@ class LeftSideMenu extends Component{
             <ul className="left-side-menu">
                 <NavLink exact to="/">
                     <li>
-                        <FontAwesomeIcon icon={faHome}/> <span>Home</span>
+                        <FontAwesomeIcon icon={faHome}/> <span className="link-name">Home</span>
                     </li>
                 </NavLink>
                 <NavLink exact to="/myaccount">
                     <li>
-                        <FontAwesomeIcon icon={faBullhorn}/> <span>My Account</span>
+                        <FontAwesomeIcon icon={faBullhorn}/> <span className="link-name">My Account</span>
                     </li>
                 </NavLink>
                 <NavLink exact to="_blank_1">
                     <li>
-                        <FontAwesomeIcon icon={faBuilding}/> <span>My Company</span>
+                        <FontAwesomeIcon icon={faBuilding}/> <span className="link-name">My Company</span>
                     </li>
                 </NavLink>
                 <NavLink exact to="_blank_2">
                     <li>
-                        <FontAwesomeIcon icon={faCog}/> <span>My Settings</span>
+                        <FontAwesomeIcon icon={faCog}/> <span className="link-name">My Settings</span>
                     </li>
                 </NavLink>
                 <NavLink exact to="_blank_3">
                     <li>
-                        <FontAwesomeIcon icon={faNewspaper}/> <span>News</span>
+                        <FontAwesomeIcon icon={faNewspaper}/> <span className="link-name">News</span>
                     </li>
                 </NavLink>
                 <NavLink exact to="_blank_4">
                     <li>
-                        <FontAwesomeIcon icon={faChartArea}/> <span>Analytics</span>
+                        <FontAwesomeIcon icon={faChartArea}/> <span className="link-name">Analytics</span>
                     </li>
                 </NavLink>
             </ul>

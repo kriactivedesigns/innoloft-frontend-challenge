@@ -37,3 +37,15 @@
         @include ilnk-highlight;
     }
 }
+
+@media (max-width: 600px){
+    .link-name{
+        display: none;
+    }
+    .left-side-menu{
+        min-width: unset;
+        li{
+            padding: 10px 15px;
+        }
+    }
+}
