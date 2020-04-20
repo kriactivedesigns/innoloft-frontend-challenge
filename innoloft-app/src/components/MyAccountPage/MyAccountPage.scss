@@ -8,7 +8,8 @@ $border-radius: 2px;
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     h1{
         background-color: $base-green;
         width: 100%;
