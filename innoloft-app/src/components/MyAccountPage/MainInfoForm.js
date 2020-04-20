@@ -31,22 +31,37 @@ function MainInfoForm(props){
         }
     }
 
+    const checkIfRequired = () => {
+        const element = document.getElementById('password')
+        if(element && element.value.length > 0){
+            return true
+        }
+        else{
+            return false
+        }
+    }
+
     return(
         <form id={MainInfoFormId}
             onSubmit={onSubmit}>
 
             <input placeholder="Email" 
                 name="email" 
+                type="email"
                 onChange={onChange}
                 value={email}/>
 
             <input placeholder="Password" 
+                id="password"
                 name="password" 
+                type="password"
                 value={password}
                 onChange={onChange}/>
 
             <input placeholder="Confirm Password" 
                 value={confirmPassword}
+                required={checkIfRequired()}
+                type="password"
                 name="passwordconfirmation" 
                 onChange={onChange}/>
 

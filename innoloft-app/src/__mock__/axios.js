@@ -9,7 +9,6 @@ module.exports = {
 
     get: () => {
         const accountInfo = JSON.parse(sessionStorage.getItem('accountInfo'));
-        console.log(accountInfo)
         if(accountInfo){
             return Promise.resolve(accountInfo)
         }
@@ -20,7 +19,6 @@ module.exports = {
 
     post: (url,data) => {
         const accountInfo = JSON.parse(sessionStorage.getItem('accountInfo'));
-        
         if(accountInfo){
             Object.assign(accountInfo,data)
             saveToLocalStore(accountInfo)
