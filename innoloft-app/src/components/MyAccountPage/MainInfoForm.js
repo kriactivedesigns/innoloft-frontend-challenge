@@ -27,7 +27,7 @@ function MainInfoForm(props){
                 ...info,
                 password
             }
-        }else if(password != confirmPassword){
+        }else if(password !== confirmPassword){
             setConfirmPasswordError("Error: Passwords do not match!")
             window.alert("Error: Passwords do not match!")
             return
@@ -72,7 +72,7 @@ function MainInfoForm(props){
                 label="Password"
                 onChange={(e) => {
                     setPassword(e.target.value)
-                    if(confirmPassword != e.target.value){
+                    if(confirmPassword !== e.target.value){
                         setConfirmPasswordError("Error: Passwords do not match!")
                     }else{
                         setConfirmPasswordError("")
@@ -89,7 +89,7 @@ function MainInfoForm(props){
                 label="Confirm Password"
                 onChange={(e) => {
                     reenterPassord(e.target.value)
-                    if(password != e.target.value){
+                    if(password !== e.target.value){
                         setConfirmPasswordError("Error: Passwords do not match!")
                     }else{
                         setConfirmPasswordError("")

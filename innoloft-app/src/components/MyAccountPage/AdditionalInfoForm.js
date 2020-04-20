@@ -33,7 +33,8 @@ function AdditionalInfoForm(props){
 
     return(
         <form id={AdditionalInfoFormId}
-            onSubmit={onSubmit}>
+            onSubmit={onSubmit}
+            autoComplete="none">
 
             <InputField type="text" 
                 placeholder="First Name" 

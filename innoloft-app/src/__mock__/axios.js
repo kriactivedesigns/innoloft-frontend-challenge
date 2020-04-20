@@ -1,5 +1,3 @@
-'use strict';
-
 const saveToLocalStore = (data) => {
     const serializedData = JSON.stringify(data)
     sessionStorage.setItem('accountInfo',serializedData)
