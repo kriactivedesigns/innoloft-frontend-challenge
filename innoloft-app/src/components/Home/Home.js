@@ -4,7 +4,9 @@ import './Home.scss'
 class Home extends Component{
     render(){
         return(
-            <h1>This is Home</h1>
+            <div className="home-container">
+                <h1>{'This is Home :)'}</h1>
+            </div>
         )
     }
 }
